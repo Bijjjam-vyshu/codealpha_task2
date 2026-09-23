@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Aura Chatbot"
+description = "A friendly Python chatbot website with contextual conversation, quick prompts, and a responsive chat interface."
+version = "1.0.0"
+id = "artifacts/mira-chatbot"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24235
+
+[services.development]
+run = "pnpm --filter @workspace/mira-chatbot run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/mira-chatbot", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/mira-chatbot/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24235"
+BASE_PATH = "/"

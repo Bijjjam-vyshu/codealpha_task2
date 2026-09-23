@@ -1,0 +1,1 @@
+- [Preview routing](preview-routing.md) — Python-backed web apps need a registered root artifact for a reliable browser preview.
